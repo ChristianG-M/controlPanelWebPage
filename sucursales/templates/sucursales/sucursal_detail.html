@@ -1,20 +1,22 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block title %}
 Sucursal
 {% endblock %}
 {% block content %}
-{% load static %}
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 id="sucursalName1"></h1>
-            </div>
-            <div class="col-sm-6">
+                <h1>
+                    {{sucursal.nombre}}                    
+                </h1>
+                </div>
+                <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'Sucursales' %}">Sucursales</a></li>
-                    <li id="sucursalName2" class="breadcrumb-item active"></li>
+                    <li class="breadcrumb-item"><a href="{% url 'Sucursal:Sucursales' %}">Sucursales</a></li>
+                    <li class="breadcrumb-item active">{{sucursal.nombre}}</li>                    
                 </ol>
             </div>
         </div>
@@ -27,31 +29,31 @@ Sucursal
             <br/>
             <ul class="users-list clearfix">
                 <li class="zoomin">
-                    <a href="{% url 'Usuarios' %}">
+                    <a>
                         <img src="{% static 'core/img/user.png' %}" class="img-fluid mb-2" alt="white sample"/>                                    
                         <h1>Usuarios</h1>
                     </a>
                 </li>
                 <li class="zoomin">
-                    <a href="{% url 'Equipos' %}">
+                    <a>
                         <img src="{% static 'core/img/equipo.png' %}" class="img-fluid mb-2" alt="white sample"/>
                         <h1>Equipos</h1>
                     </a>
                 </li>
                 <li class="zoomin">
-                    <a href="{% url 'Servicios' %}">
+                    <a>
                         <img src="{% static 'core/img/servicios.png' %}" class="img-fluid mb-2" alt="white sample"/>
                         <h1>Servicios</h1>
                     </a>
                 </li>
                 <li class="zoomin">
-                    <a href="{% url 'Tiendas' %}">
+                    <a>
                         <img src="{% static 'core/img/tiendas.png' %}" class="img-fluid mb-2" alt="white sample"/>
                         <h1>Tiendas</h1>
                     </a>
                 </li>
                 <li class="zoomin">
-                    <a href="{% url 'Tarifas' %}">
+                    <a>
                         <img src="{% static 'core/img/tarifas.png' %}" class="img-fluid mb-2" alt="white sample"/>
                         <h1>Tarifas</h1>
                     </a>
@@ -61,7 +63,7 @@ Sucursal
                     <br/>
                     <br/>
                     <br/>
-                    <a href="{% url 'Suscripciones' %}">
+                    <a>
                         <img src="{% static 'core/img/candados.png' %}" class="img-fluid mb-2" alt="white sample"/>
                         <h1>Suscripciones</h1>
                     </a>
@@ -71,7 +73,7 @@ Sucursal
                     <br/>
                     <br/>
                     <br/>
-                    <a href="{% url 'Reportes' %}">
+                    <a>
                         <img src="{% static 'core/img/report.png' %}" class="img-fluid mb-2" alt="white sample"/>
                         <h1>Reportes</h1>
                     </a>

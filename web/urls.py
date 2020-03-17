@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from sucursales.urls import sucursal_patterns
 
 urlpatterns = [
     #Paths de Core
     path('', include('core.urls')),
     #Path de Sucursales
-    path('sucursales/', include('sucursales.urls')),
+    path('sucursales/', include(sucursal_patterns)),
     #Paths de Admin
     path('admin/', admin.site.urls),
     #Paths de Authentication

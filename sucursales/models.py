@@ -3,8 +3,41 @@ from django_countries.fields import CountryField
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Sucursales(models.Model):
-    STATE_CHOICES = (('AGU', 'Aguascalientes'), ('BCN', 'Baja California'), ('BCS', 'Baja California Sur'), ('CAM', 'Campeche'), ('CHH', 'Chihuahua'), ('CHP', 'Chiapas'), ('COA', 'Coahuila'), ('COL', 'Colima'), ('CDMX', 'Ciudad de México'), ('DUR', 'Durango'), ('GRO', 'Guerrero'), ('GUA', 'Guanajuato'), ('HID', 'Hidalgo'), ('JAL', 'Jalisco'), ('MEX', 'Estado de México'), ('MIC', 'Michoacán'), ('MOR', 'Morelos'), ('NAY', 'Nayarit'), ('NLE', 'Nuevo León'), ('OAX', 'Oaxaca'), ('PUE', 'Puebla'), ('QUE', 'Querétaro'), ('ROO', 'Quintana Roo'), ('SIN', 'Sinaloa'), ('SLP', 'San Luis Potosí'), ('SON', 'Sonora'), ('TAB', 'Tabasco'), ('TAM', 'Tamaulipas'), ('TLA', 'Tlaxcala'), ('VER', 'Veracruz'), ('YUC', 'Yucatán'), ('ZAC', 'Zacatecas'))
+class Sucursal(models.Model):
+    STATE_CHOICES = (
+        ('Aguascalientes', 'Aguascalientes'), 
+        ('Baja California', 'Baja California'), 
+        ('Baja California Sur', 'Baja California Sur'), 
+        ('Campeche', 'Campeche'), 
+        ('Chihuahua', 'Chihuahua'), 
+        ('Chiapas', 'Chiapas'), 
+        ('Coahuila', 'Coahuila'), 
+        ('Colima', 'Colima'), 
+        ('CDMX', 'Ciudad de México'), 
+        ('Durango', 'Durango'), 
+        ('Guerrero', 'Guerrero'), 
+        ('Guanajuato', 'Guanajuato'), 
+        ('Hidalgo', 'Hidalgo'), 
+        ('Jalisco', 'Jalisco'), 
+        ('Estado de México', 'Estado de México'), 
+        ('Michoacán', 'Michoacán'), 
+        ('Morelos', 'Morelos'), 
+        ('Nayarit', 'Nayarit'), 
+        ('Nuevo León', 'Nuevo León'), 
+        ('Oaxaca', 'Oaxaca'), 
+        ('Puebla', 'Puebla'), 
+        ('Querétaro', 'Querétaro'), 
+        ('Quintana Roo', 'Quintana Roo'), 
+        ('Sinaloa', 'Sinaloa'), 
+        ('San Luis Potosí', 'San Luis Potosí'), 
+        ('Sonora', 'Sonora'), 
+        ('Tabasco', 'Tabasco'), 
+        ('Tamaulipas', 'Tamaulipas'), 
+        ('Tlaxcala', 'Tlaxcala'), 
+        ('Veracruz', 'Veracruz'), 
+        ('Yucatán', 'Yucatán'), 
+        ('Zacatecas', 'Zacatecas')
+    )
     id = models.AutoField(primary_key=True, verbose_name="ID")
     nombre = models.CharField(max_length=255, verbose_name="Nombre")
     empresa = models.CharField(max_length=255, verbose_name="Empresa")

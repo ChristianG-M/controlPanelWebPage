@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import SucursalListView, SucursalDetailView, SucursalCreate
 
-urlpatterns = [
-    path('',views.sucursales, name="Sucursales"),
-    path('sucursal/',views.sucursales, name="Sucursal"),
-]
+sucursal_patterns = ([
+    path('', SucursalListView.as_view(), name="Sucursales"),
+    path('<int:pk>/',SucursalDetailView.as_view(), name="Sucursal"),
+    path('create/', SucursalCreate.as_view(), name="Create")
+], 'Sucursal')

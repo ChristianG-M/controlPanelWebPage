@@ -1,0 +1,12 @@
+{% if request.user.is_staff %}
+    <div class="widget-user-header bg-info">
+        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_plaza" type="button" style="float:right">
+            <i class="fas fa-trash">
+            </i>                                        
+        </button>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_plaza" type="button">
+            <i class="fas fa-pencil-alt">
+            </i>                                        
+        </button>
+    </div>
+{% endif %}

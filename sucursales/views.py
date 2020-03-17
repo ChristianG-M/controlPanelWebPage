@@ -1,11 +1,35 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
-from .models import Sucursales
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.urls import reverse, reverse_lazy
+from .models import Sucursal
 
 # Create your views here.
-def sucursales(request):
-    sucursales = get_list_or_404(Sucursales)
-    return render(request, "sucursales/sucursales.html", {'sucursales':sucursales})
+class SucursalListView(ListView):
+    model = Sucursal
 
-def sucursal(request, sucursal_id, sucursal_slug):
-    sucursal = get_object_or_404(Sucursales, id=sucursal_id)
-    return render(request, "sucursales/sucursal.html", {'sucursal':sucursal})    
+class SucursalDetailView(DetailView):
+    model = Sucursal
+
+class SucursalCreate(CreateView):
+    model = Sucursal
+    fields = [
+        'nombre',
+        'empresa',
+        'latitud',
+        'longitud',
+        'pais',
+        'estado',
+        'alcaldia',
+        'codigoPostal',
+        'colonia',
+        'calle',
+        'numero',
+        'telefono',
+        'correo',
+        'horaApertura',
+        'horaCierre',
+        'image',
+        'supervisor'        
+    ]
+    success_url = reverse_lazy('Sucursal:Sucursales')

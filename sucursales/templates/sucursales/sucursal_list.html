@@ -24,8 +24,7 @@ Sucursales
         <div class="col-sm-6">
         <h1>
             Sucursales
-            <button type="button" class="btn btn-tool" data-toggle="modal" title="Agregar" data-target="#add_plaza"><i class="fas fa-plus"></i>
-            </button>
+            {% include 'sucursales/includes/sucursal_add.html' %}
         </h1>
         </div>
         <div class="col-sm-6">
@@ -40,25 +39,16 @@ Sucursales
 <section class="content-header">
     <div class="container-fluid">
         <div id="myItems" class="row mb-2">
-            {% for sucursal in sucursales %}
+            {% for sucursal in sucursal_list %}
                 <div class="col-md-4">
-                    <div class="widget-user-header bg-info">
-                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_plaza" type="button" style="float:right">
-                            <i class="fas fa-trash">
-                            </i>                                        
-                        </button>
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_plaza" type="button">
-                            <i class="fas fa-pencil-alt">
-                            </i>                                        
-                        </button>
-                    </div>
+                    {% include 'sucursales/includes/sucursal_menu.html' %}
                     <div class="card card-widget widget-user">
                         <div class="widget-user-header bg-info">
                             <h3 style="float:left"><b>{{sucursal.id}}</b></h3>                                        
                             <h3 class="widget-user-username">{{sucursal.nombre}}</h3>
                             <h5 class="widget-user-desc"><b>{{sucursal.estado}}</b></h5>
                         </div>
-                        <a class="linkSucursal" id="0" href="{% url 'Sucursal' %}">
+                        <a class="linkSucursal" href="{% url 'Sucursal:Sucursal' sucursal.id %}">
                             <div class="widget-user-image zoomin">
                                 <img class="img-circle" src="{{sucursal.image.url}}" alt="S.O.">
                             </div>
