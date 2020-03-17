@@ -1,0 +1,326 @@
+{% extends 'core/base.html' %}
+{% block title %}
+Sucursales
+{% endblock %}
+
+{% block busqueda %}
+<form class="form-inline ml-3">
+    <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="text" id="myFilter" onkeyup="mySearch()" placeholder="Buscar Sucursal" aria-label="Search" autocomplete="off">
+        <div class="input-group-append">
+            <button class="btn-navbar" disabled>
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="content-header">
+    <div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+        <h1>
+            Sucursales
+            <button type="button" class="btn btn-tool" data-toggle="modal" title="Agregar" data-target="#add_plaza"><i class="fas fa-plus"></i>
+            </button>
+        </h1>
+        </div>
+        <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Sucursales</li>
+        </ol>
+        </div>
+    </div>
+    </div>
+</section>
+<section class="content-header">
+    <div class="container-fluid">
+        <div id="myItems" class="row mb-2">
+            {% for sucursal in sucursales %}
+                <div class="col-md-4">
+                    <div class="widget-user-header bg-info">
+                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_plaza" type="button" style="float:right">
+                            <i class="fas fa-trash">
+                            </i>                                        
+                        </button>
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_plaza" type="button">
+                            <i class="fas fa-pencil-alt">
+                            </i>                                        
+                        </button>
+                    </div>
+                    <div class="card card-widget widget-user">
+                        <div class="widget-user-header bg-info">
+                            <h3 style="float:left"><b>{{sucursal.id}}</b></h3>                                        
+                            <h3 class="widget-user-username">{{sucursal.nombre}}</h3>
+                            <h5 class="widget-user-desc"><b>{{sucursal.estado}}</b></h5>
+                        </div>
+                        <a class="linkSucursal" id="0" href="{% url 'Sucursal' %}">
+                            <div class="widget-user-image zoomin">
+                                <img class="img-circle" src="{{sucursal.image.url}}" alt="S.O.">
+                            </div>
+                        </a>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <div class="info-tarjeta">Ultimo Corte:<br/>28/02/2020 14:55:01</div>
+                                        <h5 class="description-header">3,200</h5>
+                                        <span class="description-text">Cortes</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">                                                    
+                                        <div class="info-tarjeta">1 Servidor<br/>3 Expedidoras<br/>2 Cajeros<br/>3 Validadoras</div>
+                                        <h5 class="description-header">13</h5>
+                                        <a href="{% url 'Equipos' %}">
+                                            <span class="description-text">EQUIPOS</span>
+                                        </a>                                                    
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="description-block">
+                                        <div class="info-tarjeta">Supervisor:<br/>{{sucursal.supervisor}}</div>
+                                        <h5 class="description-header">35</h5>
+                                        <a href="{% url 'Usuarios' %}">
+                                            <span class="description-text">USUARIOS</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-green" role="progressbar" aria-volumenow="80" aria-volumemin="0" aria-volumemax="100" style="width: 80%">
+                        </div>
+                    </div>
+                    <small>
+                        80% Funcionando
+                    </small>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<div id="add_plaza" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nueva Plaza</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="insert_form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre de Plaza</label>
+                            <input type="text" name="plaza" id="plaza" class="form-control" />
+                            <label>Empresa</label>
+                            <input type="text" name="empresa" id="empresa" class="form-control" />
+                            <label>Latitud</label>
+                            <input type="text" name="latitud" id="latitud" class="form-control" />
+                            <label>Longitud</label>
+                            <input type="text" name="longitud" id="longitud" class="form-control" />
+                            <label>Pais</label>
+                            <select name="pais" id="pais" class="form-control">
+                                <option>-</option>
+                                <option value="Mexico">México</option>  
+                                <option value="EUA">E.U.A.</option>
+                            </select>
+                            <label>Estado</label>
+                            <select name="estado" id="estado" class="form-control">
+                                <option>-</option>
+                                <option value="CDMX">CDMX</option>  
+                                <option value="Estado de Mexico">Estado de México</option>
+                                <option value="Puebla">Puebla</option>
+                            </select>
+                            <label>Código Postal</label>
+                            <input type="text" name="codigo postal" id="codigoPostal" class="form-control" />
+                            <label>Colonia</label>
+                            <select name="colonia" id="colonia" class="form-control">
+                                <option>-</option>
+                                <option value="Los Olivos">Los Olivos</option>  
+                                <option value="Ajusco I">Ajusco I</option>
+                                <option value="Centro">Centro</option>
+                            </select>                                        
+                        </div>
+                        <div class="col-md-6">
+                            <label>Calle</label>
+                            <input type="text" name="calle" id="calle" class="form-control" />
+                            <label>Número</label>
+                            <input type="text" name="numero" id="numero" class="form-control" />
+                            <label>Telefono</label>
+                            <input type="text" name="telefono" id="telefono" class="form-control" />
+                            <label>Correo</label>
+                            <input type="text" name="correo" id="correo" class="form-control" />
+                            <label>Hora de Apertura</label>
+                            <input type="text" name="horaIni" id="horaIni" class="form-control" />
+                            <label>Hora de Cierre</label>
+                            <input type="text" name="horaCierre" id="horaCierre" class="form-control" />
+                            <label>Fecha de Creación</label>
+                            <input type="text" name="fechaCreacion" id="fechaCreacion" class="form-control" />
+                            <label>Ultima Modificación</label>
+                            <input type="text" name="fechaModifica" id="fechaModifica" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <input type="submit" name="insert" id="insert" value="Agregar" class="btn btn-success" />                            
+            </div>
+        </div>
+    </div>
+</div>           
+
+<div id="edit_plaza" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Plaza</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="insert_form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre de Plaza</label>
+                            <input type="text" name="plaza" id="plaza" class="form-control" />
+                            <label>Empresa</label>
+                            <input type="text" name="empresa" id="empresa" class="form-control" />
+                            <label>Latitud</label>
+                            <input type="text" name="latitud" id="latitud" class="form-control" />
+                            <label>Longitud</label>
+                            <input type="text" name="longitud" id="longitud" class="form-control" />
+                            <label>Pais</label>
+                            <select name="pais" id="pais" class="form-control">
+                                <option>-</option>
+                                <option value="Mexico">México</option>  
+                                <option value="EUA">E.U.A.</option>
+                            </select>
+                            <label>Estado</label>
+                            <select name="estado" id="estado" class="form-control">
+                                <option>-</option>
+                                <option value="CDMX">CDMX</option>  
+                                <option value="Estado de Mexico">Estado de México</option>
+                                <option value="Puebla">Puebla</option>
+                            </select>
+                            <label>Código Postal</label>
+                            <input type="text" name="codigo postal" id="codigoPostal" class="form-control" />
+                            <label>Colonia</label>
+                            <select name="colonia" id="colonia" class="form-control">
+                                <option>-</option>
+                                <option value="Los Olivos">Los Olivos</option>  
+                                <option value="Ajusco I">Ajusco I</option>
+                                <option value="Centro">Centro</option>
+                            </select>                                        
+                        </div>
+                        <div class="col-md-6">
+                            <label>Calle</label>
+                            <input type="text" name="calle" id="calle" class="form-control" />
+                            <label>Número</label>
+                            <input type="text" name="numero" id="numero" class="form-control" />
+                            <label>Telefono</label>
+                            <input type="text" name="telefono" id="telefono" class="form-control" />
+                            <label>Correo</label>
+                            <input type="text" name="correo" id="correo" class="form-control" />
+                            <label>Hora de Apertura</label>
+                            <input type="text" name="horaIni" id="horaIni" class="form-control" />
+                            <label>Hora de Cierre</label>
+                            <input type="text" name="horaCierre" id="horaCierre" class="form-control" />
+                            <label>Fecha de Creación</label>
+                            <input type="text" name="fechaCreacion" id="fechaCreacion" class="form-control" />
+                            <label>Ultima Modificación</label>
+                            <input type="text" name="fechaModifica" id="fechaModifica" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <input type="submit" name="insert" id="insert" value="Agregar" class="btn btn-success" />                            
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="delete_plaza" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Plaza</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Desea eliminar la plaza?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footerScript %}
+<script>
+    $(document).ready(function(){
+        $(".linkSucursal").click(function(){
+            var pk;
+            pk = $(this).attr('id');
+            switch( pk )
+            {
+                case "0":
+                    localStorage.setItem("sucursal", 'Aguascalientes');
+                break;
+                
+                case  "1":
+                    localStorage.setItem("sucursal", 'Eduardo Molina');
+                break;
+                
+                case "2":
+                    localStorage.setItem("sucursal", 'Las Ferias');
+                break;
+                
+                case  "3":
+                    localStorage.setItem("sucursal", 'Plaza del Sol');
+                break;
+                
+                case  "4":
+                    localStorage.setItem("sucursal", 'Plaza Rio');
+                break;
+            }
+        });
+    });
+</script>
+
+<script>
+    function mySearch() {
+        var input, filter, cards, cardContainer, h3, title, i;
+        input = document.getElementById("myFilter");
+        filter = input.value.toUpperCase();
+        cardContainer = document.getElementById("myItems");
+        cards = cardContainer.getElementsByClassName("col-md-4");
+        for (i = 0; i < cards.length; i++) {
+            title = cards[i].querySelector(".card h3.widget-user-username");
+            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>
+{% endblock %}

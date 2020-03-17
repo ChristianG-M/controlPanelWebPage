@@ -1,0 +1,3 @@
+pip install django-countries
+from django_countries.fields import CountryField
+python manage.py migrate --run-syncdb

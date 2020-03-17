@@ -1,0 +1,367 @@
+{% extends 'core/base.html' %}
+{% block title %}
+Usuarios
+{% endblock %}
+{% block headScript %}
+{% load static %}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'core/plugins/datatables-bs4/css/dataTables.bootstrap4.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>
+                    Usuarios
+                    <button type="button" class="btn btn-tool" data-toggle="modal" title="Agregar" data-target="#add_user"><i class="fas fa-plus"></i>
+                    </button>
+                </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="./sucursalesPanel.html">Sucursales</a></li>
+                    <li id="sucursalName2" class="breadcrumb-item active"></li>
+                    <li class="breadcrumb-item active">Usuarios</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-body table-responsive p-0" style="height: 750px;">
+                        <table id="example1" class="table table-head-fixed text-nowrap table-hover">
+                            <thead id="myHeader">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Rol</th>
+                                    <th>Sucursal</th>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Direccion</th>
+                                    <th>Tel.</th>
+                                    <th>Entrada</th>
+                                    <th>Salida</th>
+                                    <th>Estado</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Desarrollador</td>
+                                    <td>Escobillera</td>
+                                    <td>Luis Christian Garcia Miguel</td>
+                                    <td>christian@gmail.com</td>
+                                    <td>Escobillera 13 Área Federal Central de Abastos<br/> Iztapalapa Ciudad de México, CDMX</td>
+                                    <td>55 3678 1498</td>
+                                    <td>09:00</td>
+                                    <td>18:00</td>
+                                    <td><span class="label label-warning text-success">Activo</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#edit_user"><i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#delete_user"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Desarrollador</td>
+                                    <td>Escobillera</td>
+                                    <td>Luis Christian Garcia Miguel</td>
+                                    <td>christian@gmail.com</td>
+                                    <td>Escobillera 13 Área Federal Central de Abastos<br/> Iztapalapa Ciudad de México, CDMX</td>
+                                    <td>55 3678 1498</td>
+                                    <td>09:00</td>
+                                    <td>18:00</td>
+                                    <td><span class="label label-warning text-success">Activo</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#edit_user"><i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#delete_user"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Desarrollador</td>
+                                    <td>Escobillera</td>
+                                    <td>Luis Christian Garcia Miguel</td>
+                                    <td>christian@gmail.com</td>
+                                    <td>Escobillera 13 Área Federal Central de Abastos<br/> Iztapalapa Ciudad de México, CDMX</td>
+                                    <td>55 3678 1498</td>
+                                    <td>09:00</td>
+                                    <td>18:00</td>
+                                    <td><span class="label label-warning text-danger">Inactivo</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#edit_user"><i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#delete_user"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Desarrollador</td>
+                                    <td>Escobillera</td>
+                                    <td>Luis Christian Garcia Miguel</td>
+                                    <td>christian@gmail.com</td>
+                                    <td>Escobillera 13 Área Federal Central de Abastos<br/> Iztapalapa Ciudad de México, CDMX</td>
+                                    <td>55 3678 1498</td>
+                                    <td>09:00</td>
+                                    <td>18:00</td>
+                                    <td><span class="label label-warning text-success">Activo</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#edit_user"><i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#delete_user"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Desarrollador</td>
+                                    <td>Escobillera</td>
+                                    <td>Luis Christian Garcia Miguel</td>
+                                    <td>christian@gmail.com</td>
+                                    <td>Escobillera 13 Área Federal Central de Abastos<br/> Iztapalapa Ciudad de México, CDMX</td>
+                                    <td>55 3678 1498</td>
+                                    <td>09:00</td>
+                                    <td>18:00</td>
+                                    <td><span class="label label-warning text-danger">Inactivo</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#edit_user"><i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-tool" data-toggle="modal" title="Edit" data-target="#delete_user"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Rol</th>
+                                    <th>Sucursal</th>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Direccion</th>
+                                    <th>Tel.</th>
+                                    <th>Entrada</th>
+                                    <th>Salida</th>
+                                    <th>Estado</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>
+
+<div id="add_user" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nuevo Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="insert_form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre de Usuario</label>
+                            <input type="text" name="plaza" id="plaza" class="form-control" />
+                            <label>Empresa</label>
+                            <input type="text" name="empresa" id="empresa" class="form-control" />
+                            <label>Latitud</label>
+                            <input type="text" name="latitud" id="latitud" class="form-control" />
+                            <label>Longitud</label>
+                            <input type="text" name="longitud" id="longitud" class="form-control" />
+                            <label>Pais</label>
+                            <select name="pais" id="pais" class="form-control">
+                                <option>-</option>
+                                <option value="Mexico">México</option>  
+                                <option value="EUA">E.U.A.</option>
+                            </select>
+                            <label>Estado</label>
+                            <select name="estado" id="estado" class="form-control">
+                                <option>-</option>
+                                <option value="CDMX">CDMX</option>  
+                                <option value="Estado de Mexico">Estado de México</option>
+                                <option value="Puebla">Puebla</option>
+                            </select>
+                            <label>Código Postal</label>
+                            <input type="text" name="codigo postal" id="codigoPostal" class="form-control" />
+                            <label>Colonia</label>
+                            <select name="colonia" id="colonia" class="form-control">
+                                <option>-</option>
+                                <option value="Los Olivos">Los Olivos</option>  
+                                <option value="Ajusco I">Ajusco I</option>
+                                <option value="Centro">Centro</option>
+                            </select>                                        
+                        </div>
+                        <div class="col-md-6">
+                            <label>Calle</label>
+                            <input type="text" name="calle" id="calle" class="form-control" />
+                            <label>Número</label>
+                            <input type="text" name="numero" id="numero" class="form-control" />
+                            <label>Telefono</label>
+                            <input type="text" name="telefono" id="telefono" class="form-control" />
+                            <label>Correo</label>
+                            <input type="text" name="correo" id="correo" class="form-control" />
+                            <label>Hora de Apertura</label>
+                            <input type="text" name="horaIni" id="horaIni" class="form-control" />
+                            <label>Hora de Cierre</label>
+                            <input type="text" name="horaCierre" id="horaCierre" class="form-control" />
+                            <label>Fecha de Creación</label>
+                            <input type="text" name="fechaCreacion" id="fechaCreacion" class="form-control" />
+                            <label>Ultima Modificación</label>
+                            <input type="text" name="fechaModifica" id="fechaModifica" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <input type="submit" name="insert" id="insert" value="Agregar" class="btn btn-success" />                            
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div id="edit_user" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="insert_form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre de Usuario</label>
+                            <input type="text" name="plaza" id="plaza" class="form-control" />
+                            <label>Empresa</label>
+                            <input type="text" name="empresa" id="empresa" class="form-control" />
+                            <label>Latitud</label>
+                            <input type="text" name="latitud" id="latitud" class="form-control" />
+                            <label>Longitud</label>
+                            <input type="text" name="longitud" id="longitud" class="form-control" />
+                            <label>Pais</label>
+                            <select name="pais" id="pais" class="form-control">
+                                <option>-</option>
+                                <option value="Mexico">México</option>  
+                                <option value="EUA">E.U.A.</option>
+                            </select>
+                            <label>Estado</label>
+                            <select name="estado" id="estado" class="form-control">
+                                <option>-</option>
+                                <option value="CDMX">CDMX</option>  
+                                <option value="Estado de Mexico">Estado de México</option>
+                                <option value="Puebla">Puebla</option>
+                            </select>
+                            <label>Código Postal</label>
+                            <input type="text" name="codigo postal" id="codigoPostal" class="form-control" />
+                            <label>Colonia</label>
+                            <select name="colonia" id="colonia" class="form-control">
+                                <option>-</option>
+                                <option value="Los Olivos">Los Olivos</option>  
+                                <option value="Ajusco I">Ajusco I</option>
+                                <option value="Centro">Centro</option>
+                            </select>                                        
+                        </div>
+                        <div class="col-md-6">
+                            <label>Calle</label>
+                            <input type="text" name="calle" id="calle" class="form-control" />
+                            <label>Número</label>
+                            <input type="text" name="numero" id="numero" class="form-control" />
+                            <label>Telefono</label>
+                            <input type="text" name="telefono" id="telefono" class="form-control" />
+                            <label>Correo</label>
+                            <input type="text" name="correo" id="correo" class="form-control" />
+                            <label>Hora de Apertura</label>
+                            <input type="text" name="horaIni" id="horaIni" class="form-control" />
+                            <label>Hora de Cierre</label>
+                            <input type="text" name="horaCierre" id="horaCierre" class="form-control" />
+                            <label>Fecha de Creación</label>
+                            <input type="text" name="fechaCreacion" id="fechaCreacion" class="form-control" />
+                            <label>Ultima Modificación</label>
+                            <input type="text" name="fechaModifica" id="fechaModifica" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <input type="submit" name="insert" id="insert" value="Agregar" class="btn btn-success" />                            
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div id="delete_user" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Desea eliminar al usuario?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footerScript %}
+<!-- DataTables -->
+<script src="{% static 'core/plugins/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-bs4/js/dataTables.bootstrap4.js' %}"></script>
+<script>
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+</script>
+{% endblock %}
