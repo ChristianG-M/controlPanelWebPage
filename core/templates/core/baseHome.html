@@ -32,9 +32,8 @@
                     </ul>
                     <ul class="nav navbar-nav flex-row justify-content-between ml-auto">                    
                         <li class="dropdown order-1">
-                            <!--<li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>-->
-                            <button type="button" class="btn btn-outline-secondary">Iniciar Sesión<span class="caret"></span></button>
-                            <button type="button" class="btn btn-outline-secondary">Registro<span class="caret"></span></button>
+                            <button id="iniciarSesion" type="submit" class="btn btn-outline-secondary has-spinner">Iniciar Sesión</button>
+                            <button id="registro" type="submit" class="btn btn-outline-secondary has-spinner">Registro</button>
                         </li>
                     </ul>
                 </div>
@@ -94,6 +93,15 @@
         <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
         <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'core/jquery/jquery.buttonLoader.js' %}"></script>
+        <script>
+            document.getElementById("iniciarSesion").onclick = function () {
+                location.href = "{% url 'admin:login' %}";
+            };
+
+            document.getElementById("registro").onclick = function () {
+                location.href = "{% url 'admin:login' %}";
+            };
+        </script>
         {% block footerScript %}{% endblock %}        
     </body>
 </html>
