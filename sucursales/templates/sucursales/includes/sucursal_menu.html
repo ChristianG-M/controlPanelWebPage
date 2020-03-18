@@ -1,10 +1,10 @@
 {% if request.user.is_staff %}
     <div class="widget-user-header bg-info">
         <button class="btn btn-danger btn-sm" type="button" style="float:right">
-            <a type="button" class="btn btn-tool" title="Agregar" href="{% url 'Sucursal:Delete' sucursal.id %}"><i class="fas fa-trash"></i></a>
+            <a type="button" class="btn btn-tool" title="Eliminar" href="{% url 'Sucursal:Delete' sucursal.id %}"><i class="fas fa-trash"></i></a>
         </button>        
         <button class="btn btn-info btn-sm" type="button">
-            <a type="button" class="btn btn-tool" title="Agregar" href="{% url 'Sucursal:Update' sucursal.id %}"><i class="fas fa-pencil-alt"></i></a>
+            <a type="button" class="btn btn-tool" title="Editar" href="{% url 'Sucursal:Update' sucursal.id %}"><i class="fas fa-pencil-alt"></i></a>
         </button>
     </div>
 {% endif %}

@@ -38,20 +38,16 @@ Actualizar Sucursal
                                 Regresar
                             </a>
                         {% endif %}
-                        <div class="row">                            
-                            <div class="col-md-4">                                
+                        <div class="row mt-3">
+                            <div class="col-md-5 mx-auto">
+                                {{ form.as_p }}                                
                             </div>
-                            <div class="col-md-6">                                
-                                <table>
-                                    {{ form.as_table }}
-                                </table>        
-                            </div>                            
                         </div>
                         <div class="card-footer">
-                            <input type="submit" value="Actualizar" class="btn btn-info">                            
-                            <a href="{% url 'Sucursal:Sucursales' %}" type="button" value="Cancelar" class="btn btn-default float-right">Cancelar</a>
+                            <input type="submit" value="Actualizar" class="btn btn-info btn-block">
+                            <a href="{% url 'Sucursal:Sucursales' %}" type="button" value="Cancelar" class="btn btn-default btn-block float-right">Cancelar</a>
                         </div>
-                    </form>
+                    </form>                    
                 </div>
             </div>
         </div>
