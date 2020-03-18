@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}
-Crear Sucursal
+Actualizar Sucursal
 {% endblock %}
 {% block content %}    
     <section class="content-header">
@@ -9,14 +9,14 @@ Crear Sucursal
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>
-                        Agregar Sucursal
+                        Actualizar Sucursal
                     </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
                         <li class="breadcrumb-item"><a href="{% url 'Sucursal:Sucursales' %}">Sucursales</a></li>
-                        <li class="breadcrumb-item active">Agregar Sucursal</li>
+                        <li class="breadcrumb-item active">Actualizar Sucursal</li>
                     </ol>
                 </div>
             </div>
@@ -27,22 +27,28 @@ Crear Sucursal
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Sucursal</h3>
-                </div>
+                </div>                
                 <div class="card-body">
                     <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-                        <div class="row">
+                        {% if 'ok' in request.GET %}
+                            <h3 style="color:green; background-color: #64dd17; text-align: center;">
+                                Página editada correctamente.
+                            </h3>
+                            <a href="{% url 'Sucursal:Sucursales' %}">
+                                Regresar
+                            </a>
+                        {% endif %}
+                        <div class="row">                            
                             <div class="col-md-4">                                
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6">                                
                                 <table>
                                     {{ form.as_table }}
                                 </table>        
-                            </div>
-                            <div class="col-md-4">                                
-                            </div>
+                            </div>                            
                         </div>
                         <div class="card-footer">
-                            <input type="submit" value="Agregar" class="btn btn-info">
+                            <input type="submit" value="Actualizar" class="btn btn-info">                            
                             <a href="{% url 'Sucursal:Sucursales' %}" type="button" value="Cancelar" class="btn btn-default float-right">Cancelar</a>
                         </div>
                     </form>

@@ -1,12 +1,10 @@
 {% if request.user.is_staff %}
     <div class="widget-user-header bg-info">
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_plaza" type="button" style="float:right">
-            <i class="fas fa-trash">
-            </i>                                        
-        </button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_plaza" type="button">
-            <i class="fas fa-pencil-alt">
-            </i>                                        
+        <button class="btn btn-danger btn-sm" type="button" style="float:right">
+            <a type="button" class="btn btn-tool" title="Agregar" href="{% url 'Sucursal:Delete' sucursal.id %}"><i class="fas fa-trash"></i></a>
+        </button>        
+        <button class="btn btn-info btn-sm" type="button">
+            <a type="button" class="btn btn-tool" title="Agregar" href="{% url 'Sucursal:Update' sucursal.id %}"><i class="fas fa-pencil-alt"></i></a>
         </button>
     </div>
 {% endif %}
