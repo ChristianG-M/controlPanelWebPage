@@ -16,9 +16,11 @@ class StaffRequiredMixin(object):
 
 
 # Create your views here.
+@method_decorator(staff_member_required, name='dispatch')
 class SucursalListView(ListView):
     model = Sucursal
 
+@method_decorator(staff_member_required, name='dispatch')
 class SucursalDetailView(DetailView):
     model = Sucursal
 

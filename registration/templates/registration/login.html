@@ -1,0 +1,55 @@
+{% extends 'core/baseHome.html' %}
+{% load static %} 
+{% block title %}
+Iniciar Sesión
+{% endblock %}
+{% block content %}    
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>
+                        Iniciar Sesión
+                    </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'Sucursal:Sucursales' %}">Sucursales</a></li>
+                        <li class="breadcrumb-item active">Agregar Sucursal</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Iniciar Sesión</h3>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                        {% if form.non_field_errors %}
+                            <p style="color:red">Usuario o contraseña incorrectos, prueba de nuevo.</p>
+                        {% endif %}
+                        <div class="row mt-3">
+                            <div class="col-md-5 mx-auto">                                
+                                <p>
+                                    <input type="text" name="username" autofocus maxlength="254" required id="id_username" class="form-control" placeholder="Nombre de Usuario"/>
+                                </p>
+                                <p>
+                                    <input type="password" name="password" required id="id_password" class="form-control" placeholder="Contraseña"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" value="Acceder" class="btn btn-info btn-block">
+                            <a href="{% url 'Inicio' %}" type="button" value="Cancelar" class="btn btn-default btn-block float-right">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>            
+{% endblock %}
