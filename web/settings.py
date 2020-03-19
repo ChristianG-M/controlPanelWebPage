@@ -125,3 +125,7 @@ STATIC_URL = '/static/'
 #Media Config
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#Authentication redirects
+LOGIN_REDIRECT_URL = 'Sucursal:Sucursales'
+LOGOUT_REDIRECT_URL = 'Inicio'
