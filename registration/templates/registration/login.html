@@ -20,6 +20,12 @@ Iniciar Sesión
                         <h3 class="card-title">Iniciar Sesión</h3>
                     </div>
                     <div class="card-body login-card-body">
+                        {% if 'register' in request.GET %}
+                            <h5 style="color:#64dd47; text-align: center;">
+                                Usuario registrado correctamente
+                            </h5>
+                            <br/>
+                        {% endif %}
                         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
                             {% if form.non_field_errors %}
                                 <p style="color:red">Usuario o contraseña incorrectos, intente de nuevo.</p>
